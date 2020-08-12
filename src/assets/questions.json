@@ -1,0 +1,7 @@
+[{
+    "question": "What problem does arrow functions solve?",
+    "options": ["this binding", "Nothing. It's just a shorthand for function"]
+}, {
+    "question": "What does HTML stand for?",
+    "options": ["HyperText Makeup Language", "HyperText Markup Language"]
+}]

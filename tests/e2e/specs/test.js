@@ -8,5 +8,9 @@ describe('My First Test', () => {
     questions.forEach((question) => {
       cy.contains('h4', question.question)
     })
+
+    cy.get('button').click()
+
+    cy.get('div.border-warning').should('have.length', questions.length)
   })
 })

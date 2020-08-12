@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Nav/>
+    <b-container>
+      <h2 class="display-4">Quiz 1 - HTML / CSS / JS Practice</h2>
+      <QuestionsList />
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Nav from './components/Nav';
+import QuestionsList from './components/QuestionList';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Nav,
+    QuestionsList
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: "#f4f6f8";
 }
 </style>

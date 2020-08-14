@@ -3,6 +3,9 @@
     class="shadow-sm rounded mb-4"
     :class="quizHasErrors && selectedAnswer === null ? 'border-warning' : `border-${resultStyle}`"
     :title="questionTitle">
+    <b-card-text v-if="question.snippet" class="pl-4 mb-0">
+      <pre><code class="code">{{ question.snippet }}</code></pre>
+    </b-card-text>
     <b-form-group class="pl-4 mb-0">
       <b-form-radio
         v-for="(option, index) in question.options"
@@ -27,7 +30,7 @@
 
 <script>
 export default {
-  name: "QuestionItem",
+  name: 'QuestionItem',
   props: {
     question: Object,
     questionIndex: Number,
@@ -43,17 +46,17 @@ export default {
   },
   computed: {
     questionTitle() {
-      return `${this.questionIndex + 1}. ${this.question.question}`;
+      return `${this.questionIndex + 1}. ${this.question.question}`
     },
     result() {
-      return this.correctItem.correct ? "Correct" : "Wrong";
+      return this.correctItem.correct ? 'Correct' : 'Wrong'
     },
     resultStyle() {
       if (!this.quizCompleted) {
-        return "";
+        return ''
       }
 
-      return this.correctItem.correct ? "success" : "danger";
+      return this.correctItem.correct ? 'success' : 'danger'
     }
   },
   methods: {
@@ -62,8 +65,15 @@ export default {
         this.quizCompleted &&
         !this.correctItem.correct &&
         this.correctItem.correctAnswer === index
-      );
+      )
     }
   }
 };
 </script>
+
+
+<style>
+.code {
+  color:coral;
+}
+</style>

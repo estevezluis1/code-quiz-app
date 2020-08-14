@@ -34,20 +34,32 @@
 </template>
 
 <script>
-import questions from "../assets/questions.json";
-import QuestionItem from "./QuestionItem";
+import questions from "../assets/questions.json"
+import QuestionItem from "./QuestionItem"
 
-const submittedAnswers = Array(questions.length).fill(null);
+const submittedAnswers = Array(questions.length).fill(null)
+
+const shuffleArray = array => {
+  for (let i = array.length; i--; ) {
+    const j = Math.floor(Math.random() * i)
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  return array;
+};
 
 export default {
-  name: "QuestionList",
+  name: 'QuestionList',
   props: {},
   components: {
     QuestionItem
   },
+  created() {},
   data: () => {
     return {
-      questions,
+      questions: shuffleArray(questions),
       submittedAnswers,
       quizHasErrors: false,
       quizCompleted: false
@@ -56,38 +68,38 @@ export default {
   computed: {
     correctAnswers() {
       return this.submittedAnswers.filter((answer, index) => {
-        return answer === this.questions[index].answer;
-      }).length;
+        return answer === this.questions[index].answer
+      }).length
     },
     scoreDetails() {
-      return `You got ${this.correctAnswers} of ${questions.length} correct`;
+      return `You got ${this.correctAnswers} of ${questions.length} correct`
     },
     scorePercentage() {
-      return Math.floor((this.correctAnswers / questions.length) * 100);
+      return Math.floor((this.correctAnswers / questions.length) * 100)
     },
     percentageClass() {
-      return this.scorePercentage >= 70 ? "text-success" : "text-danger";
+      return this.scorePercentage >= 70 ? 'text-success' : 'text-danger'
     }
   },
   methods: {
     itemScore(question, index) {
-      const submittedAnswer = this.submittedAnswers[index];
+      const submittedAnswer = this.submittedAnswers[index]
       return {
         correct: question.answer === submittedAnswer,
         correctAnswer: question.answer
       };
     },
     updateSelectedAnswer(answer, index) {
-      this.$set(this.submittedAnswers, index, answer);
+      this.$set(this.submittedAnswers, index, answer)
     },
     submitQuiz() {
       if (this.submittedAnswers.indexOf(null) === -1) {
-        this.quizCompleted = true;
-        this.quizHasErrors = false;
-        return;
+        this.quizCompleted = true
+        this.quizHasErrors = false
+        return
       }
-      this.quizHasErrors = true;
-      this.quizCompleted = false;
+      this.quizHasErrors = true
+      this.quizCompleted = false
     }
   }
 };

@@ -3,37 +3,23 @@
         <div v-show="score !== null">
             <b-row>
                 <b-col class="text-center">
-                    <p class="lead">Results</p>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col class="text-center">
-                    {{ scoreDetails() }}
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col class="text-center" :class="[ score >= 70 ? 'text-success' : 'text-danger' ]">
-                    {{ scorePercentage() }}
+                    <p class="lead"><u>Results</u></p>
+                    <p class="mb-0">{{ scoreDetails }}</p>
+                    <p class="font-weight-bold" :class="score >= 70 ? 'text-success' : 'text-danger'">{{ scorePercentage }}</p>
                 </b-col>
             </b-row>
         </div>
         <QuestionItem
-         v-for="(question, index) in questions" 
-         :key="index"
-         :ref="index"
+         v-for="question in questions" 
+         :key="question.id"
          :question="question"
-         :title="questionTitle(question.question, index)"
          
         />
 
     <b-row>
         <b-col class="text-center">
             <b-button @click="submitQuiz" :disabled="score !== null" variant="success">Submit</b-button>
-        </b-col>
-    </b-row>
-    <b-row>
-        <b-col class="text-center text-danger">
-            Answer all questions before submitting. Unanswered questions are displayed in yellow.
+            <p class="text-danger">Answer all questions before submitting. Unanswered questions are displayed in yellow.</p>
         </b-col>
     </b-row>
     </div>
@@ -50,7 +36,8 @@ export default {
         QuestionItem
     },
     data: () => {
-        questions.map((question) => {
+        questions.map((question, i) => {
+            question.id = i;
             question.selectedAnswer = null
         })
         return {
@@ -59,11 +46,16 @@ export default {
             score: null
         }
     },
-    methods: {
-        questionTitle (question, index) {
-            return `${index + 1}. ${question}`
+    computed: {
+        scoreDetails() {
+            return `You got ${this.answersCorrect} of ${questions.length} correct`
         },
-        submitQuiz () {
+        scorePercentage() {
+            return `${Math.floor((this.answersCorrect / questions.length) * 100)}%`
+        }
+    },
+    methods: {
+        submitQuiz() {
             let quizCompleted = true
 
             for (let i = 0; i < questions.length; i++) {
@@ -85,12 +77,6 @@ export default {
 
                 this.score = Math.floor((this.answersCorrect / questions.length) * 100)
             }
-        },
-        scoreDetails() {
-            return `You got ${this.answersCorrect} of ${questions.length} correct`
-        },
-        scorePercentage() {
-            return `${Math.floor((this.answersCorrect / questions.length) * 100)}%`
         }
     }
 }

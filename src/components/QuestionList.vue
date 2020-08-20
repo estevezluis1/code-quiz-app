@@ -2,12 +2,11 @@
   <div>
     <div v-show="quizCompleted">
       <b-row>
-        <b-col class="text-center">
-          <p class="lead">
-            <u>Results</u>
-          </p>
-          <p class="mb-0">{{ scoreDetails }}</p>
-          <p class="font-weight-bold" :class="percentageClass">{{ scorePercentage }}%</p>
+        <b-col class="h4 text-center">
+          <p><u>Results</u></p>
+          <span class="mb-0">{{ scoreDetails }}</span>
+          <br />
+          <span class="font-weight-bold" :class="percentageClass">{{ scorePercentage }}%</span>
         </b-col>
       </b-row>
     </div>
@@ -24,10 +23,8 @@
 
     <b-row>
       <b-col class="text-center">
-        <b-button @click="submitQuiz" variant="success">Submit</b-button>
-        <p
-          class="text-danger"
-        >Answer all questions before submitting. Unanswered questions are displayed in yellow.</p>
+        <b-button class="border border-dark" @click="submitQuiz" variant="success">Submit</b-button>
+        <p class="text-danger mt-3">Answer all questions before submitting. Unanswered questions are displayed in yellow.</p>
       </b-col>
     </b-row>
   </div>
@@ -39,17 +36,6 @@ import QuestionItem from "./QuestionItem"
 
 const submittedAnswers = Array(questions.length).fill(null)
 
-const shuffleArray = array => {
-  for (let i = array.length; i--; ) {
-    const j = Math.floor(Math.random() * i)
-    const temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-
-  return array;
-};
-
 export default {
   name: 'QuestionList',
   props: {},
@@ -59,7 +45,7 @@ export default {
   created() {},
   data: () => {
     return {
-      questions: shuffleArray(questions),
+      questions,
       submittedAnswers,
       quizHasErrors: false,
       quizCompleted: false
@@ -72,7 +58,7 @@ export default {
       }).length
     },
     scoreDetails() {
-      return `You got ${this.correctAnswers} of ${questions.length} correct`
+      return `You got ${this.correctAnswers} of ${questions.length} questions correct`
     },
     scorePercentage() {
       return Math.floor((this.correctAnswers / questions.length) * 100)

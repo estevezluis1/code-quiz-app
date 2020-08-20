@@ -58,7 +58,7 @@ export default {
       }).length
     },
     scoreDetails() {
-      return `You got ${this.correctAnswers} of ${questions.length} questions correct`
+      return `You got ${this.correctAnswers} / ${questions.length} questions correct`
     },
     scorePercentage() {
       return Math.floor((this.correctAnswers / questions.length) * 100)

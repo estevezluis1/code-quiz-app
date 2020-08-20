@@ -1,18 +1,14 @@
 [{
-    "question": "What problem does arrow functions solve?",
-    "options": ["this binding", "Nothing. It's just a shorthand for function"],
-    "answer": 0
-}, {
-    "question": "What does HTML stand for?",
-    "options": ["HyperText Makeup Language", "HyperText Markup Language"],
+    "question": "What is the purpose of HTML and CSS?",
+    "options": ["HTML handles data, CSS handles routing", "HTML tells the browser what to display, CSS tell it what style to display it in", "HTML styles the page, CSS makes it interactive", "HTML makes the page interactive, CSS styles the page"],
     "answer": 1
 }, {
-    "question": "In what direction does emit bubble travels?",
-    "options": ["Down", "Up"],
-    "answer": 1
+    "question": "Which of these html tags contains correct syntax?",
+    "options": ["<div class=row></div>", "<div style=\"position:absolute;\" </div>", "<div class=\"row\" style=\"position:absolute;\"/><div>", "<div class=\"row\" id=\"my-div\"></div>"],
+    "answer": 3
 }, {
-    "question": "What is the content of newArr in this code snippet?",
-    "snippet": "let newArr = [];\nfor (let arr = [1, 2, 3], i = arr.length; i--;) { newArr.push(arr[i]) }",
-    "options": ["3, 2, 1", "empty array due to error in for loop", "1, 2, 3"],
+    "question": "What is the output of the following code:",
+    "snippet": "var answer = 5;\nfor (var i = 0, i > 10; i+=2){\n\tanswer += i;\n}\nconsole.log(answer);",
+    "options": ["17", "25", "21", "33"],
     "answer": 0
 }]

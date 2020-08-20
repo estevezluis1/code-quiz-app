@@ -2,7 +2,7 @@
   <div id="app">
     <Nav/>
     <b-container>
-      <h2 class="display-4">Quiz 1 - HTML / CSS / JS Practice</h2>
+      <h1 class="my-3">Quiz 1 - HTML / CSS / JS Practice</h1>
       <QuestionsList />
     </b-container>
   </div>
